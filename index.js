@@ -4,7 +4,6 @@ const morgan = require("morgan")
 const cors = require('cors')
 const app = express()
 const bodyParser = require('body-parser')
-app.use(cors())
 app.use(morgan("tiny"))
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({
@@ -18,6 +17,9 @@ let people = [
   {"id": 3, "name": "Dan Abramov", "number": "12-43-234345"},
   {"id": 4, "name": "Mary Poppendieck", "number": "39-23-6423122"}
 ]
+
+app.use(cors())
+app.use(express.static("build"));
 
 
 morgan.token("content", (req, res) => {
