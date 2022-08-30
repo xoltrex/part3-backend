@@ -70,6 +70,6 @@ app.get('/info', (request, response) => {
   response.send(`Phonebook has ${people.length} people <br/>${today} <br/>`)
 })
 
-const PORT = 3001
+const PORT = process.env.PORT || 3001;
 app.listen(PORT)
 console.log(`shits grooving @ ${PORT}`)
