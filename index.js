@@ -56,6 +56,9 @@ const body = request.body
   if (!body.name) {
     return response.status(400).json({
       error: "no name"})
+  }  if (!body.number) {
+    return response.status(400).json({
+      error: "no number"})
   }
 
   const person = new Person({
@@ -79,7 +82,7 @@ app.put('/api/people/:id', (request, response, next) => {
     number: body.number,
   }
 
-  Person.findByIdAndUpdate(id, person, { new: true })
+  Person.findByIdAndUpdate(id, person, { new: true, runValidators: true, context: 'query'})
     .then(updatedPerson => {
       response.json(updatedPerson.toJSON())
     })
